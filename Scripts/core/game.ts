@@ -81,8 +81,8 @@ var game = (() => {
          scene.add(axis);
         // Add a plane to the scene
        plane = new gameObject(
-        new PlaneGeometry(20, 20, 1, 1),
-        new LambertMaterial({ color: 0xFF67CE }),
+        new PlaneGeometry(100, 100, 1, 1),
+        new LambertMaterial({ color: 0x01FF3E }),
         0, 0, 0);
 
          plane.rotation.x = -0.5 * Math.PI;
@@ -160,7 +160,7 @@ var game = (() => {
         spotLight.position.set(80 , 40 , 60);
         spotLight.rotation.set(0, 0, 0);
         spotLight.castShadow = true;
-        spotLight.intensity = 1;
+        spotLight.intensity = 1.5;
         scene.add(spotLight);
       
         // add controls
@@ -177,9 +177,16 @@ var game = (() => {
 
     }
 
+   
     function addControl(controlObject: Control): void {
         /* ENTER CODE for the GUI CONTROL HERE */
-        gui.add(controlObject, 'rotatationCube1', -0.5,0.5); // change rotation speed by X axe
+        gui.add(controlObject, 'rotatationCube1', -0.5,0.5);
+        gui.add(controlObject, 'rotatationCube2', -0.5,0.5); 
+        gui.add(controlObject, 'rotatationCube3', -0.5,0.5); 
+        gui.add(controlObject, 'rotatationCube4', -0.5,0.5); 
+        gui.add(controlObject, 'rotatationCube5', -0.5,0.5); 
+        gui.add(controlObject, 'rotatationCube6', -0.5,0.5); 
+        gui.add(controlObject, 'rotatationCube7', -0.5,0.5); 
     }
     
     // Added a staty to the scene 
@@ -195,7 +202,13 @@ var game = (() => {
     // Setup main game loop
     function gameLoop(): void {
         stats.update();
-        
+        cube1.rotation.y += control.rotatationCube1;
+        cube2.rotation.y += control.rotatationCube2;
+        cube3.rotation.y += control.rotatationCube3;
+        cube4.rotation.y += control.rotatationCube4;
+        cube5.rotation.y += control.rotatationCube5;
+        cube6.rotation.y += control.rotatationCube6;
+        cube7.rotation.y += control.rotatationCube7;
         // render using requestAnimationFrame
         requestAnimationFrame(gameLoop);
 	
