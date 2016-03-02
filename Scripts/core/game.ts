@@ -35,25 +35,122 @@ import gameObject = objects.gameObject;
 var game = (() => {
 
     // declare game objects
-    var scene: Scene = new Scene();
+    var spotLight: SpotLight;
+    var ambientLight: AmbientLight;
+    var cubeMaterial: LambertMaterial;
+    var cubeGeometry: CubeGeometry;
+    var scene: Scene;
     var renderer: Renderer;
     var camera: PerspectiveCamera;
     var control: Control;
     var gui: GUI;
     var stats: Stats;
+    var axis: AxisHelper;
+    var plane: Mesh;
+    var cube1: Mesh;
+    var cube2: Mesh;
+    var cube3: Mesh;
+    var cube4: Mesh;
+    var cube5: Mesh;
+    var cube6: Mesh;
+    var cube7: Mesh;
+    
 
     function init() {
         // Instantiate a new Scene object
-        //scene = new Scene();
+        scene = new Scene();
         
         setupRenderer(); // setup the default renderer
 	
         setupCamera(); // setup the camera
 
-
+        
         /* ENTER CODE HERE */
         
+         axis = new AxisHelper(50);
+         scene.add(axis);
+        // Add a plane to the scene
+       plane = new gameObject(
+        new PlaneGeometry(20, 20, 1, 1),
+        new LambertMaterial({ color: 0xFF67CE }),
+        0, 0, 0);
+
+         plane.rotation.x = -0.5 * Math.PI;
+        scene.add(plane);
+       
+       // Added Cube 1 to the scene (bottom)
+        cubeMaterial = new LambertMaterial({color:0x5F43E7});
+        cubeGeometry = new CubeGeometry(10 ,2 , 10);
+        cube1 = new Mesh(cubeGeometry, cubeMaterial);
+        cube1.castShadow = true;
+        cube1.receiveShadow = true;
+        scene.add(cube1);
+        
+        // Added Cube 2 to the scene 
+        cubeMaterial = new LambertMaterial({color:0x5F43E7});
+        cubeGeometry = new CubeGeometry(8 ,2 , 8);
+        cube2 = new Mesh(cubeGeometry, cubeMaterial);
+        cube2.position.y = 2;
+        cube2.castShadow = true;
+        cube2.receiveShadow = true;
+        scene.add(cube2);
+        
+        // Added Cube 3 to the scene 
+        cubeMaterial = new LambertMaterial({color:0x5F43E7});
+        cubeGeometry = new CubeGeometry(7 ,2 , 7);
+        cube3 = new Mesh(cubeGeometry, cubeMaterial);
+        cube3.position.y = 4;
+        cube3.castShadow = true;
+        cube3.receiveShadow = true;
+        scene.add(cube3);
+        
+         // Added Cube 4 to the scene 
+        cubeMaterial = new LambertMaterial({color:0x5F43E7});
+        cubeGeometry = new CubeGeometry(5 ,2 , 5);
+        cube4 = new Mesh(cubeGeometry, cubeMaterial);
+        cube4.position.y = 6;
+        cube4.castShadow = true;
+        cube4.receiveShadow = true;
+        scene.add(cube4);
+        
+         // Added Cube 5 to the scene 
+        cubeMaterial = new LambertMaterial({color:0x5F43E7});
+        cubeGeometry = new CubeGeometry(4 ,2 , 4);
+        cube5 = new Mesh(cubeGeometry, cubeMaterial);
+        cube5.position.y = 8;
+        cube5.castShadow = true;
+        cube5.receiveShadow = true;
+        scene.add(cube5);
  
+         // Added Cube 6 to the scene 
+        cubeMaterial = new LambertMaterial({color:0x5F43E7});
+        cubeGeometry = new CubeGeometry(3 ,2 , 3);
+        cube6 = new Mesh(cubeGeometry, cubeMaterial);
+        cube6.position.y = 10;
+        cube6.castShadow = true;
+        cube6.receiveShadow = true;
+        scene.add(cube6);
+        
+         // Added Cube 7 to the scene  
+        cubeMaterial = new LambertMaterial({color:0x5F43E7});
+        cubeGeometry = new CubeGeometry(2 ,2 , 2);
+        cube7 = new Mesh(cubeGeometry, cubeMaterial);
+        cube7.position.y = 12;
+        cube7.castShadow = true;
+        cube7.receiveShadow = true;
+        scene.add(cube7);
+        
+        // ambient light 
+        ambientLight = new AmbientLight(0x090909);
+        scene.add(ambientLight);
+        
+        spotLight = new SpotLight(0xffffff);
+        spotLight.position.set(80 , 40 , 60);
+        spotLight.rotation.set(0, 0, 0);
+        spotLight.castShadow = true;
+        spotLight.intensity = 1;
+        scene.add(spotLight);
+      
         // add controls
         gui = new GUI();
         control = new Control();
@@ -97,14 +194,14 @@ var game = (() => {
         renderer = new Renderer();
         renderer.setClearColor(0x404040, 1.0);
         renderer.setSize(CScreen.WIDTH, CScreen.HEIGHT);
-        //renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.shadowMap.enabled = true;
         console.log("Finished setting up Renderer...");
     }
 
     // Setup main camera for the scene
     function setupCamera(): void {
-        camera = new PerspectiveCamera(35, config.Screen.RATIO, 0.1, 100);
+        camera = new PerspectiveCamera(55, config.Screen.RATIO, 0.1, 100);
         camera.position.x = 15.3;
         camera.position.y = 18.5;
         camera.position.z = -28.7;
