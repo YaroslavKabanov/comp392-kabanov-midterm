@@ -1,5 +1,14 @@
 /// <reference path="_reference.ts"/>
-// MAIN GAME FILE
+// ********************************************
+// * Source file : game.ts                    *
+// * Author name : Yaroslav Kabanov           *
+// * Last Modified by : Yaroslav Kabanov      *
+// * Last Date Modified : March 2th, 2016     *
+// * Program Description : Tapered Tower      * 
+// * Version: 1.0                             * 
+// ********************************************
+// Git Link : https://github.com/YaroslavKabanov/comp392-kabanov-midterm.git
+// Live Link : http://comp392-midterm-kabanov.azurewebsites.net 
 // THREEJS Aliases
 var Scene = THREE.Scene;
 var Renderer = THREE.WebGLRenderer;
@@ -57,57 +66,66 @@ var game = (function () {
         /* ENTER CODE HERE */
         axis = new AxisHelper(50);
         scene.add(axis);
+        // Add a plane to the scene
         plane = new gameObject(new PlaneGeometry(20, 20, 1, 1), new LambertMaterial({ color: 0xFF67CE }), 0, 0, 0);
         plane.rotation.x = -0.5 * Math.PI;
         scene.add(plane);
-        cubeMaterial = new LambertMaterial({ color: 0x5F43E7 });
+        // Added Cube 1 to the scene (bottom)
+        cubeMaterial = new LambertMaterial({ color: Math.floor(Math.random() * 16777215) });
         cubeGeometry = new CubeGeometry(10, 2, 10);
         cube1 = new Mesh(cubeGeometry, cubeMaterial);
         cube1.castShadow = true;
         cube1.receiveShadow = true;
         scene.add(cube1);
-        cubeMaterial = new LambertMaterial({ color: 0x5F43E7 });
+        // Added Cube 2 to the scene 
+        cubeMaterial = new LambertMaterial({ color: Math.floor(Math.random() * 16777215) });
         cubeGeometry = new CubeGeometry(8, 2, 8);
         cube2 = new Mesh(cubeGeometry, cubeMaterial);
         cube2.position.y = 2;
         cube2.castShadow = true;
         cube2.receiveShadow = true;
         scene.add(cube2);
-        cubeMaterial = new LambertMaterial({ color: 0x5F43E7 });
+        // Added Cube 3 to the scene 
+        cubeMaterial = new LambertMaterial({ color: Math.floor(Math.random() * 16777215) });
         cubeGeometry = new CubeGeometry(7, 2, 7);
         cube3 = new Mesh(cubeGeometry, cubeMaterial);
         cube3.position.y = 4;
         cube3.castShadow = true;
         cube3.receiveShadow = true;
         scene.add(cube3);
-        cubeMaterial = new LambertMaterial({ color: 0x5F43E7 });
+        // Added Cube 4 to the scene 
+        cubeMaterial = new LambertMaterial({ color: Math.floor(Math.random() * 16777215) });
         cubeGeometry = new CubeGeometry(5, 2, 5);
         cube4 = new Mesh(cubeGeometry, cubeMaterial);
         cube4.position.y = 6;
         cube4.castShadow = true;
         cube4.receiveShadow = true;
         scene.add(cube4);
-        cubeMaterial = new LambertMaterial({ color: 0x5F43E7 });
+        // Added Cube 5 to the scene 
+        cubeMaterial = new LambertMaterial({ color: Math.floor(Math.random() * 16777215) });
         cubeGeometry = new CubeGeometry(4, 2, 4);
         cube5 = new Mesh(cubeGeometry, cubeMaterial);
         cube5.position.y = 8;
         cube5.castShadow = true;
         cube5.receiveShadow = true;
         scene.add(cube5);
-        cubeMaterial = new LambertMaterial({ color: 0x5F43E7 });
+        // Added Cube 6 to the scene 
+        cubeMaterial = new LambertMaterial({ color: Math.floor(Math.random() * 16777215) });
         cubeGeometry = new CubeGeometry(3, 2, 3);
         cube6 = new Mesh(cubeGeometry, cubeMaterial);
         cube6.position.y = 10;
         cube6.castShadow = true;
         cube6.receiveShadow = true;
         scene.add(cube6);
-        cubeMaterial = new LambertMaterial({ color: 0x5F43E7 });
+        // Added Cube 7 to the scene  
+        cubeMaterial = new LambertMaterial({ color: Math.floor(Math.random() * 16777215) });
         cubeGeometry = new CubeGeometry(2, 2, 2);
         cube7 = new Mesh(cubeGeometry, cubeMaterial);
         cube7.position.y = 12;
         cube7.castShadow = true;
         cube7.receiveShadow = true;
         scene.add(cube7);
+        // ambient light 
         ambientLight = new AmbientLight(0x090909);
         scene.add(ambientLight);
         spotLight = new SpotLight(0xffffff);
@@ -118,7 +136,7 @@ var game = (function () {
         scene.add(spotLight);
         // add controls
         gui = new GUI();
-        control = new Control();
+        control = new Control(0.00001);
         addControl(control);
         // Add framerate stats
         addStatsObject();
@@ -128,7 +146,9 @@ var game = (function () {
     }
     function addControl(controlObject) {
         /* ENTER CODE for the GUI CONTROL HERE */
+        gui.add(controlObject, 'rotatationCube1', -0.5, 0.5); // change rotation speed by X axe
     }
+    // Added a staty to the scene 
     function addStatsObject() {
         stats = new Stats();
         stats.setMode(0);

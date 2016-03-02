@@ -1,6 +1,16 @@
 /// <reference path="_reference.ts"/>
 
-// MAIN GAME FILE
+// ********************************************
+// * Source file : game.ts                    *
+// * Author name : Yaroslav Kabanov           *
+// * Last Modified by : Yaroslav Kabanov      *
+// * Last Date Modified : March 2th, 2016     *
+// * Program Description : Tapered Tower      * 
+// * Version: 1.0                             * 
+// ********************************************
+// Git Link : https://github.com/YaroslavKabanov/comp392-kabanov-midterm.git
+// Live Link : http://comp392-midterm-kabanov.azurewebsites.net 
+
 
 // THREEJS Aliases
 import Scene = THREE.Scene;
@@ -79,7 +89,7 @@ var game = (() => {
         scene.add(plane);
        
        // Added Cube 1 to the scene (bottom)
-        cubeMaterial = new LambertMaterial({color:0x5F43E7});
+        cubeMaterial = new LambertMaterial({color: Math.floor(Math.random()*16777215)});
         cubeGeometry = new CubeGeometry(10 ,2 , 10);
         cube1 = new Mesh(cubeGeometry, cubeMaterial);
         cube1.castShadow = true;
@@ -87,7 +97,7 @@ var game = (() => {
         scene.add(cube1);
         
         // Added Cube 2 to the scene 
-        cubeMaterial = new LambertMaterial({color:0x5F43E7});
+        cubeMaterial = new LambertMaterial({color: Math.floor(Math.random()*16777215)});
         cubeGeometry = new CubeGeometry(8 ,2 , 8);
         cube2 = new Mesh(cubeGeometry, cubeMaterial);
         cube2.position.y = 2;
@@ -96,7 +106,7 @@ var game = (() => {
         scene.add(cube2);
         
         // Added Cube 3 to the scene 
-        cubeMaterial = new LambertMaterial({color:0x5F43E7});
+        cubeMaterial = new LambertMaterial({color: Math.floor(Math.random()*16777215)});
         cubeGeometry = new CubeGeometry(7 ,2 , 7);
         cube3 = new Mesh(cubeGeometry, cubeMaterial);
         cube3.position.y = 4;
@@ -105,7 +115,7 @@ var game = (() => {
         scene.add(cube3);
         
          // Added Cube 4 to the scene 
-        cubeMaterial = new LambertMaterial({color:0x5F43E7});
+        cubeMaterial = new LambertMaterial({color: Math.floor(Math.random()*16777215)});
         cubeGeometry = new CubeGeometry(5 ,2 , 5);
         cube4 = new Mesh(cubeGeometry, cubeMaterial);
         cube4.position.y = 6;
@@ -114,7 +124,7 @@ var game = (() => {
         scene.add(cube4);
         
          // Added Cube 5 to the scene 
-        cubeMaterial = new LambertMaterial({color:0x5F43E7});
+        cubeMaterial = new LambertMaterial({color: Math.floor(Math.random()*16777215)});
         cubeGeometry = new CubeGeometry(4 ,2 , 4);
         cube5 = new Mesh(cubeGeometry, cubeMaterial);
         cube5.position.y = 8;
@@ -123,7 +133,9 @@ var game = (() => {
         scene.add(cube5);
  
          // Added Cube 6 to the scene 
-        cubeMaterial = new LambertMaterial({color:0x5F43E7});
+         
+    
+        cubeMaterial = new LambertMaterial({color: Math.floor(Math.random()*16777215)});
         cubeGeometry = new CubeGeometry(3 ,2 , 3);
         cube6 = new Mesh(cubeGeometry, cubeMaterial);
         cube6.position.y = 10;
@@ -132,7 +144,7 @@ var game = (() => {
         scene.add(cube6);
         
          // Added Cube 7 to the scene  
-        cubeMaterial = new LambertMaterial({color:0x5F43E7});
+        cubeMaterial = new LambertMaterial({color: Math.floor(Math.random()*16777215)});
         cubeGeometry = new CubeGeometry(2 ,2 , 2);
         cube7 = new Mesh(cubeGeometry, cubeMaterial);
         cube7.position.y = 12;
@@ -153,7 +165,7 @@ var game = (() => {
       
         // add controls
         gui = new GUI();
-        control = new Control();
+        control = new Control(0.00001);
         addControl(control);
 
         // Add framerate stats
@@ -167,8 +179,10 @@ var game = (() => {
 
     function addControl(controlObject: Control): void {
         /* ENTER CODE for the GUI CONTROL HERE */
+        gui.add(controlObject, 'rotatationCube1', -0.5,0.5); // change rotation speed by X axe
     }
-
+    
+    // Added a staty to the scene 
     function addStatsObject() {
         stats = new Stats();
         stats.setMode(0);
