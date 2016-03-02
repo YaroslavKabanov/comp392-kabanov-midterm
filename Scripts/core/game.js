@@ -30,6 +30,7 @@ var AmbientLight = THREE.AmbientLight;
 var Control = objects.Control;
 var GUI = dat.GUI;
 var Color = THREE.Color;
+var HemisphereLight = THREE.HemisphereLight;
 var Vector3 = THREE.Vector3;
 var Face3 = THREE.Face3;
 var Point = objects.Point;
@@ -39,6 +40,7 @@ var gameObject = objects.gameObject;
 // setup an IIFE structure (Immediately Invoked Function Expression)
 var game = (function () {
     // declare game objects
+    var hemLight;
     var spotLight;
     var ambientLight;
     var cubeMaterial;
@@ -125,9 +127,12 @@ var game = (function () {
         cube7.castShadow = true;
         cube7.receiveShadow = true;
         scene.add(cube7);
-        // ambient light 
+        // Adeed an ambient light 
         ambientLight = new AmbientLight(0x090909);
         scene.add(ambientLight);
+        hemlLight = new THREE.HemisphereLight(0xffffff, 0xffffff, 0.1);
+        scene.add(hemlLight);
+        //Added a spot light 
         spotLight = new SpotLight(0xffffff);
         spotLight.position.set(80, 40, 60);
         spotLight.rotation.set(0, 0, 0);

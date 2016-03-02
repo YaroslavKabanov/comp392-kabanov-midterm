@@ -33,6 +33,7 @@ import AmbientLight = THREE.AmbientLight;
 import Control = objects.Control;
 import GUI = dat.GUI;
 import Color = THREE.Color;
+import HemisphereLight = THREE.HemisphereLight;
 import Vector3 = THREE.Vector3;
 import Face3 = THREE.Face3;
 import Point = objects.Point;
@@ -45,6 +46,7 @@ import gameObject = objects.gameObject;
 var game = (() => {
 
     // declare game objects
+    var hemLight: HemisphereLight;
     var spotLight: SpotLight;
     var ambientLight: AmbientLight;
     var cubeMaterial: LambertMaterial;
@@ -152,10 +154,14 @@ var game = (() => {
         cube7.receiveShadow = true;
         scene.add(cube7);
         
-        // ambient light 
+        // Adeed an ambient light 
         ambientLight = new AmbientLight(0x090909);
         scene.add(ambientLight);
         
+        hemlLight = new THREE.HemisphereLight(0xffffff, 0xffffff, 0.1);
+        scene.add(hemlLight);
+         
+         //Added a spot light 
         spotLight = new SpotLight(0xffffff);
         spotLight.position.set(80 , 40 , 60);
         spotLight.rotation.set(0, 0, 0);
