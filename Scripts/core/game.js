@@ -186,7 +186,7 @@ var game = (function () {
     // Setup default renderer
     function setupRenderer() {
         renderer = new Renderer();
-        renderer.setClearColor(0x404040, 1.0);
+        renderer.setClearColor(0x7ec0ee, 1.0);
         renderer.setSize(CScreen.WIDTH, CScreen.HEIGHT);
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.shadowMap.enabled = true;

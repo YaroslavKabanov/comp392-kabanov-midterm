@@ -225,7 +225,7 @@ var game = (() => {
     // Setup default renderer
     function setupRenderer(): void {
         renderer = new Renderer();
-        renderer.setClearColor(0x404040, 1.0);
+        renderer.setClearColor(0x7ec0ee, 1.0);
         renderer.setSize(CScreen.WIDTH, CScreen.HEIGHT);
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.shadowMap.enabled = true;
@@ -237,7 +237,7 @@ var game = (() => {
         camera = new PerspectiveCamera(55, config.Screen.RATIO, 0.1, 100);
         camera.position.x = 15.3;
         camera.position.y = 18.5;
-        camera.position.z = -28.7;
+        camera.position.z = -28.7; 
         camera.rotation.set(-1.10305, 0.49742, -0.1396);
         camera.lookAt(new Vector3(0, 0, 0));
         console.log("Finished setting up Camera...");
